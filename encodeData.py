@@ -1,7 +1,7 @@
 import FramesToVideo
 import FrameCreation
 
-path = 'Sound.mp3'
+path = 'Edited Photos.zip'
 
 print("Encoding data...")
 

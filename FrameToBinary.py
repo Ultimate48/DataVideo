@@ -7,6 +7,17 @@ import numpy as np
 binary = ""
 
 
+def find_index(pixel_data):
+    mask = np.array([255, 255, 255])
+    comparison = (pixel_data == mask).all(axis=1)
+    index = np.argmax(comparison)
+    return index
+
+
+def decimalToBinary(n):
+    return bin(n).replace("0b", "").zfill(8)
+
+
 def data_save():
     with open("binary.txt", "w") as f:
         f.write(binary)
@@ -20,9 +31,14 @@ def extract_binary_from_frames(input_directory):
     for frame_file in frame_files:
         frame_path = os.path.join(input_directory, frame_file)
         frame = Image.open(frame_path)
+        pixel_data = np.array(frame)
 
-        pixel_data = np.array(frame.getdata())
-        binary += ''.join(['0' if pixel[0] == 0 else '1' for pixel in pixel_data])
+        index = find_index(pixel_data)
+        if index != 0:
+            pixel_data = pixel_data[:index]
+
+        pixel_data = pixel_data.ravel()
+        binary += "".join(map(decimalToBinary, pixel_data))
 
     data_save()
 
