@@ -30,7 +30,7 @@ def createFrames(path):
     # Add color frames
     groups.extend([(255, 0, 0), (0, 255, 0), (0, 0, 255)])
 
-    frame_number = 1
+    frame_number = 0
     i = 0
 
     while i < len(groups):
@@ -42,7 +42,7 @@ def createFrames(path):
                 frame.putpixel((x, y), groups[i])
                 i += 1
 
-        frame.save(f'Frames/output_image{frame_number:04d}.bmp')
+        frame.save(f'Frames/output_image{frame_number:06d}.bmp')
         frame_number += 1
 
-    print(f"{frame_number - 1} frames created and saved successfully.")
+    print(f"{frame_number} frames created and saved successfully.")

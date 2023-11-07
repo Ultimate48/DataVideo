@@ -1,7 +1,7 @@
 import FramesToVideo
 import FrameCreation
 
-path = 'Edited Photos.zip'
+path = 'Dishonoured.jpg'
 
 print("Encoding data...")
 

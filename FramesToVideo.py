@@ -25,7 +25,7 @@ def createVideo():
 
     # Initialize the VideoWriter object with FFV1 codec
     fourcc = cv2.VideoWriter_fourcc(*'FFV1')
-    out = cv2.VideoWriter(output_video_filename, fourcc, 30.0, (frame_width, frame_height))
+    out = cv2.VideoWriter(output_video_filename, fourcc, 120, (frame_width, frame_height))
 
     # Loop through the frame files and add each frame to the video
     for frame_file in frame_files:

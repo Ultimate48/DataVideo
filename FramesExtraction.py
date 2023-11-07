@@ -17,7 +17,7 @@ def extractFrames(video_path):
         if not ret:
             break
 
-        output_frame_filename = os.path.join(output_frame_directory, f'frame_{frame_number:04d}.bmp')
+        output_frame_filename = os.path.join(output_frame_directory, f'frame_{frame_number:06d}.bmp')
         cv2.imwrite(output_frame_filename, frame)
 
         frame_number += 1
