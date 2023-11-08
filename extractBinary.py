@@ -4,6 +4,7 @@ import pickle
 
 def extract_binary(file_path):
     name, file_format = file_path.split('.')
+    name = name.split('\\')[-1]
 
     with open(file_path, 'rb') as file:
         data = file.read()
