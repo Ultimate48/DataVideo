@@ -1,6 +1,7 @@
 import base64
 import os
 import pickle
+from pathlib import Path
 
 
 def getData():
@@ -21,7 +22,8 @@ def getData():
     name = decoded_data["metadata"]["name"]
     file_format = decoded_data["metadata"]["format"]
 
-    with open(f"{name}." + file_format, 'wb') as new_file:
+    output_file_path = Path(f"{name}.{file_format}")
+    with output_file_path.open('wb') as new_file:
         new_file.write(original_data)
 
     os.remove("binary.txt")

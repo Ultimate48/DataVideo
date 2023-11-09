@@ -1,4 +1,5 @@
 import os
+import numpy as np
 
 from PIL import Image
 from extractBinary import extract_binary
@@ -18,17 +19,20 @@ def createFrames(path):
     print("Creating frames...")
 
     binary = extract_binary(path)
+    print("Binary extracted successfully.")
     frame_width, frame_height = 160, 90
 
     # Convert binary string to decimal integers
-    data = [binaryToDecimal(binary[i:i + 8]) for i in range(0, len(binary), 8)]
+    data = np.array([int(binary[i:i+8], 2) for i in range(0, len(binary), 8)], dtype=np.uint8)
 
-    # Ensure the data is a multiple of 3 and create groups
-    data += [0] * (3 - (len(data) % 3))
-    groups = [(data[i], data[i + 1], data[i + 2]) for i in range(0, len(data), 3)]
+    # Ensure the data is a multiple of 3 and create groups using numpy
+    data = np.pad(data, (0, 3 - (len(data) % 3)), mode='constant', constant_values=0)
+    groups = np.reshape(data, (-1, 3))
 
     # Add color frames
-    groups.extend([(255, 0, 0), (0, 255, 0), (0, 0, 255)])
+    groups = np.vstack((groups, np.array([(255, 0, 0), (0, 255, 0), (0, 0, 255)], dtype=np.uint8)))
+
+    groups = [tuple(group) for group in groups]
 
     frame_number = 0
     i = 0
