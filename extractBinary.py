@@ -3,7 +3,9 @@ import pickle
 
 
 def extract_binary(file_path):
-    name, file_format = file_path.split('.')
+    index = file_path.rfind('.')
+    file_format = file_path[index + 1:]
+    name = file_path[:index]
     name = name.split('\\')[-1]
 
     with open(file_path, 'rb') as file:
