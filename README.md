@@ -1,5 +1,5 @@
 # DataVideo
-
+An amazing tool which can convert any file, no matter the extension into a video file and convert it back to the original video
 
 To run the program, follow the steps below:
 
@@ -52,3 +52,7 @@ python encodeData.py <FILE_NAME>
 ```
 start "" "output_video.avi"
 ```
+
+The created video file would be approximately 20% bigger than the original file.
+
+To decode the file, just run the decodeData.py file with the output_video.avi still in the directory and it would recreate the original file with the same name and extension before in the same directory with zero data loss.
